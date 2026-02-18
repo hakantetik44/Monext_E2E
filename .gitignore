@@ -1,0 +1,64 @@
+# Ignorer les fichiers Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Environnement virtuel
+venv/
+env/
+ENV/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Rapports et résultats
+reports/
+allure-results/
+allure-report/
+screenshots/
+videos/
+*.html
+*.xml
+!allure-results/categories.json
+!allure-results/environment.properties
+
+# Logs
+*.log
+log.html
+report.html
+output.xml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Selenium
+geckodriver.log
+chromedriver.log
+
+# Fichiers temporaires
+*.tmp
+*.temp
+*.bak

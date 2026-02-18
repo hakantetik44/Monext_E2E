@@ -1,0 +1,25 @@
+{
+    "name": "Monext E2E Tests",
+    "executor": {
+        "name": "Robot Framework",
+        "type": "robotframework",
+        "buildName": "Monext Automated Tests",
+        "reportUrl": "https://www.monext.com"
+    },
+    "environment": {
+        "browser": "${BROWSER}",
+        "platform": "macOS",
+        "framework": "Robot Framework 7.0",
+        "selenium": "SeleniumLibrary 6.2.0"
+    },
+    "results": [
+        {
+            "name": "Allure Results",
+            "path": "allure-results"
+        }
+    ],
+    "trends": {
+        "history": true,
+        "categories": true
+    }
+}

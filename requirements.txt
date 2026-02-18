@@ -1,0 +1,19 @@
+# Robot Framework Test Automation - Monext
+# Framework principal
+robotframework==7.0
+robotframework-seleniumlibrary==6.2.0
+robotframework-browser==18.0.0
+
+# Allure Report
+allure-robotframework==2.13.2
+
+# Video Recording
+opencv-python>=4.9.0.80
+numpy>=1.26.0
+mss>=9.0.1
+Pillow>=10.0.0
+
+# Utilitaires
+webdriver-manager==4.0.1
+requests==2.31.0
+python-dotenv==1.0.0
