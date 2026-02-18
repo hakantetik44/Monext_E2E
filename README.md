@@ -2,350 +2,180 @@
 
 <div align="center">
 
-![Robot Framework](https://img.shields.io/badge/Robot_Framework-7.0-brightgreen)
-![Python](https://img.shields.io/badge/Python-3.11-blue)
-![Selenium](https://img.shields.io/badge/Selenium-4.x-green)
-![Allure](https://img.shields.io/badge/Allure-2.13-orange)
-![License](https://img.shields.io/badge/License-MIT-yellow)
+![Monext Banner](https://img.shields.io/badge/MONEXT-E2E_AUTOMATION-blue?style=for-the-badge&logo=selenium)
 
-**Framework de test automatisé pour le site Monext**
+[![Robot Framework](https://img.shields.io/badge/Robot_Framework-7.0-brightgreen?style=for-the-badge&logo=robotframework)](https://robotframework.org/)
+[![Python](https://img.shields.io/badge/Python-3.11-blue?style=for-the-badge&logo=python)](https://www.python.org/)
+[![Selenium](https://img.shields.io/badge/Selenium-4.x-green?style=for-the-badge&logo=selenium)](https://www.selenium.dev/)
+[![Allure](https://img.shields.io/badge/Allure-2.13-orange?style=for-the-badge&logo=allure)](https://docs.qameta.io/allure/)
 
-[Installation](#-installation) • [Utilisation](#-utilisation) • [Structure](#-structure-du-projet) • [Rapports](#-allure-report)
+**🚀 Professional End-to-End Testing Solution for Monext Web Application**
+
+[Installation](#-installation) • [Usage](#-usage) • [Structure](#-project-structure) • [Reports](#-reporting--allure) • [Architecture](#-architecture)
 
 </div>
 
 ---
 
-## 📋 Description
+## 📋 Project Overview
 
-Ce framework de test automatisé est conçu pour tester le site web [Monext](https://www.monext.com/). Il utilise le **Page Object Model (POM)** pour une meilleure maintenabilité et réutilisabilité du code.
+This framework is a robust, industrial-grade **End-to-End (E2E) Automation Framework** designed for the [Monext](https://www.monext.com/) website. Built with **Robot Framework** and **Python**, it implements the **Page Object Model (POM)** design pattern to ensure maximum maintainability, scalability, and readability.
 
-### ✨ Fonctionnalités
+### ✨ Key Features
 
-- 🏗️ **Page Object Model** - Architecture propre et maintenable
-- 🎬 **Enregistrement vidéo** - Capture vidéo des tests pour débogage
-- 📊 **Allure Report** - Rapports détaillés et interactifs
-- 📸 **Captures d'écran** - Screenshots automatiques
-- 🇫🇷 **Documentation en français** - Code et commentaires en français
-- 🔧 **Configurable** - Paramètres personnalisables
+- 🏗️ **Advanced POM Architecture** - Separation of locators, page objects, and test scripts.
+- 🎬 **Automatic Video Recording** - High-quality video captures for every test execution.
+- 📊 **Rich Allure Reporting** - Interactive dashboards with screenshots, logs, and trends.
+- 📸 **Smart Screenshots** - Automatic screenshot capture on test failure.
+- 🇫🇷 **Bilingual Documentation** - English & French support for global teams.
+- 🔧 **CI/CD Ready** - Prepared for integration with Jenkins, GitLab CI, or GitHub Actions.
+- 🛡️ **Robust Interactions** - JavaScript fallbacks for tricky element interactions.
 
 ---
 
 ## 🛠️ Installation
 
-### Prérequis
+### 📋 Prerequisites
 
-- Python 3.11+
-- Google Chrome (dernière version)
-- ChromeDriver
-- Allure Commandline
+Ensure you have the following installed:
+- **Python 3.11+**
+- **Google Chrome** (Latest version)
+- **Allure Commandline** (`brew install allure`)
 
-### Installation des dépendances
+### ⚙️ Setup
 
 ```bash
-# Cloner le projet
-cd /Users/macbook/Desktop/Monext_E2E
+# 1. Clone the repository
+git clone https://github.com/hakantetik44/Monext_E2E.git
+cd Monext_E2E
 
-# Créer un environnement virtuel
+# 2. Create and activate virtual environment
 python3 -m venv venv
-source venv/bin/activate
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-# Installer les dépendances
+# 3. Install dependencies
 pip install -r requirements.txt
 
-# Installer ChromeDriver
+# 4. Install Browser drivers (if not handled by WebDriverManager)
 brew install chromedriver
-
-# Installer Allure
-brew install allure
 ```
 
 ---
 
-## 🚀 Utilisation
+## 🚀 Usage
 
-### Exécution rapide
+### ⚡ Quick Start Scripts
+
+We provide a powerful `run_tests.sh` script to simplify execution:
 
 ```bash
-# Rendre le script exécutable
 chmod +x run_tests.sh
 
-# Exécuter tous les tests
-./run_tests.sh --all
-
-# Tests de fumée uniquement
+# 💨 Run Smoke Tests
 ./run_tests.sh --smoke
 
-# Tests avec génération de rapport
+# 🔥 Run All Tests
+./run_tests.sh --all
+
+# 📊 Run and Generate Allure Report
 ./run_tests.sh --all --report
+
+# 🧹 Clean previous results
+./run_tests.sh --clean
 ```
 
-### Options du script
-
-| Option | Description |
-|--------|-------------|
-| `-a, --all` | Exécuter tous les tests |
-| `-s, --smoke` | Tests de fumée uniquement |
-| `-t, --test FILE` | Exécuter un fichier spécifique |
-| `-i, --include TAG` | Inclure par tag |
-| `-e, --exclude TAG` | Exclure par tag |
-| `-r, --report` | Générer le rapport Allure |
-| `-c, --clean` | Nettoyer les anciens rapports |
-
-### Exécution manuelle avec Robot Framework
+### 🛠️ Manual Execution
 
 ```bash
-# Tous les tests
-robot --listener allure_robotframework --outputdir reports tests/
+# Execute specific test file
+robot --outputdir reports tests/test_monext.robot
 
-# Tests par tag
+# Execute by Tags
 robot --include smoke --outputdir reports tests/
-
-# Test spécifique
-robot --outputdir reports tests/test_page_accueil.robot
 ```
 
 ---
 
-## 📁 Structure du projet
+## 📁 Project Structure
 
-```
+```text
 Monext_E2E/
-├── 📂 config/                    # Configuration
-│   ├── __init__.py
-│   └── settings.py               # Paramètres globaux
-│
-├── 📂 locators/                  # Sélecteurs d'éléments
-│   ├── __init__.py
-│   ├── base_locators.py          # Locators communs
-│   ├── home_locators.py          # Locators page d'accueil
-│   ├── contact_locators.py       # Locators page contact
-│   └── products_locators.py      # Locators pages produits
-│
-├── 📂 pages/                     # Page Objects
-│   ├── __init__.py
-│   ├── base_page.py              # Classe de base (fonctions communes)
-│   ├── home_page.py              # Page d'accueil
-│   ├── contact_page.py           # Page de contact
-│   └── products_page.py          # Pages produits
-│
-├── 📂 tests/                     # Fichiers de tests Robot
-│   ├── test_page_accueil.robot   # Tests page d'accueil
-│   ├── test_page_contact.robot   # Tests page contact
-│   ├── test_pages_produits.robot # Tests pages produits
-│   └── test_smoke.robot          # Tests de fumée
-│
-├── 📂 resources/                 # Ressources partagées
-│   └── common.resource           # Keywords et variables communes
-│
-├── 📂 utils/                     # Utilitaires
-│   ├── __init__.py
-│   ├── video_recorder.py         # Enregistreur vidéo
-│   └── allure_listener.py        # Listener Allure
-│
-├── 📂 reports/                   # Rapports générés
-├── 📂 allure-results/            # Résultats Allure
-├── 📂 allure-report/             # Rapport Allure HTML
-├── 📂 screenshots/               # Captures d'écran
-├── 📂 videos/                    # Enregistrements vidéo
-│
-├── requirements.txt              # Dépendances Python
-├── run_tests.sh                  # Script d'exécution
-├── allure.json                   # Config Allure
-└── README.md                     # Ce fichier
+├── 📂 locators/          # 🎯 UI Element selectors (XPath, CSS)
+├── 📂 pages/             # 🛠️ Page Object Classes (Logic & Actions)
+├── 📂 tests/             # 📝 Test Suites (Robot Framework files)
+├── 📂 resources/         # 📚 Global Keywords & Variables
+├── 📂 utils/             # ⚙️ Helpers (Video recording, Allure listeners)
+├── 📂 output/            # 📦 Test execution artifacts (XML, logs)
+├── 📂 reports/           # 📊 HTML Reports
+├── 📄 requirements.txt   # 🐍 Python dependencies
+├── 📄 run_tests.sh       # 🚀 Master execution script
+└── 📄 README.md          # 📖 Project documentation
 ```
 
 ---
 
-## 🏗️ Architecture Page Object Model
+## 🏗️ Architecture
 
-### Classe BasePage
+### 💎 Page Object Model (POM)
 
-Contient toutes les fonctions communes :
+The framework follows a strict POM hierarchy to prevent code duplication:
 
+1.  **Locators**: Pure string definitions of elements.
+2.  **BasePage**: Common Selenium actions (click, type, wait, etc.).
+3.  **Pages**: High-level business actions (e.g., `Login to account`, `Submit form`).
+4.  **Tests**: Human-readable test steps using Keywords.
+
+Example Page Logic:
 ```python
-from pages.base_page import BasePage
-
-class BasePage:
-    # Navigation
-    def ouvrir_navigateur(self, url)
-    def naviguer_vers(self, url)
-    def fermer_navigateur(self)
-    
-    # Attentes
-    def attendre_element_visible(self, locator)
-    def attendre_chargement_page(self)
-    
-    # Interactions
-    def cliquer_element(self, locator)
-    def saisir_texte(self, locator, texte)
-    def recuperer_texte(self, locator)
-    
-    # Vérifications
-    def verifier_element_visible(self, locator)
-    def verifier_texte_present(self, texte)
-    
-    # Captures
-    def capturer_ecran(self, nom)
-```
-
-### Classes de Locators
-
-```python
-from locators.home_locators import HomeLocators
-
-class HomeLocators(BaseLocators):
-    HERO_TITLE = "xpath://h1[contains(text(), 'paiement')]"
-    BTN_SE_LANCER = "css:a.btn--black.btn--arrow"
-    MENU_PRODUITS = "xpath://div[contains(text(), 'Produits')]"
-```
-
-### Pages héritant de BasePage
-
-```python
-from pages.home_page import HomePage
-
 class HomePage(BasePage):
-    def acceder_page_accueil(self):
-        self.ouvrir_navigateur(self.url)
-        self.accepter_cookies()
+    def access_home_page(self):
+        self.open_browser(self.url)
+        self.accept_cookies()
     
-    def verifier_page_accueil(self):
-        return self.verifier_element_visible(HomeLocators.HERO_TITLE)
+    def verify_hero_section(self):
+        return self.wait_until_visible(HomeLocators.HERO_TITLE)
 ```
 
 ---
 
-## 📊 Allure Report
+## 📊 Reporting & Allure
 
-### Génération du rapport
+Interactive reports are generated automatically. To view the latest results:
 
 ```bash
-# Après exécution des tests
-allure generate allure-results --clean -o allure-report
+# Generate report from results
+allure generate output/allure --clean -o reports/allure-report
 
-# Ouvrir le rapport
-allure open allure-report
+# Open in browser
+allure open reports/allure-report
 ```
 
-### Fonctionnalités du rapport
-
-- 📈 **Graphiques** - Tendances et statistiques
-- 📸 **Screenshots** - Captures d'écran attachées
-- 🎬 **Vidéos** - Enregistrements des tests
-- 📝 **Logs** - Détails d'exécution
-- 🏷️ **Tags** - Organisation par feature/story
-
-### Tags disponibles
-
-| Tag | Description |
-|-----|-------------|
-| `smoke` | Tests de fumée |
-| `regression` | Tests de régression |
-| `critical` | Tests critiques |
-| `feature:XXX` | Feature testée |
-| `severity:XXX` | Niveau de sévérité |
+### 📈 What's inside the report?
+- **Detailed Steps**: Every keyword executed is logged.
+- **Failures**: Screenshots and stack traces for easy debugging.
+- **Video**: Full MP4 recording of the test session.
+- **Environment**: OS, Browser, and Version metadata.
 
 ---
 
-## 🎬 Enregistrement Vidéo
+## 🤝 Contribution
 
-Le framework inclut un enregistreur vidéo automatique :
-
-```python
-from utils.video_recorder import VideoRecorder
-
-# Utilisation
-recorder = VideoRecorder(test_name="mon_test")
-recorder.demarrer_enregistrement()
-
-# ... exécution du test ...
-
-recorder.arreter_enregistrement()
-recorder.attacher_video_allure()
-```
-
-Les vidéos sont automatiquement attachées au rapport Allure.
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ---
 
-## 🔧 Configuration
+## 📄 License
 
-### Variables d'environnement
-
-```bash
-export BROWSER=chrome
-export HEADLESS=false
-```
-
-### Fichier settings.py
-
-```python
-# config/settings.py
-BASE_URL = "https://www.monext.com"
-BROWSER = "chrome"
-HEADLESS = False
-IMPLICIT_WAIT = 10
-PAGE_LOAD_TIMEOUT = 30
-```
-
----
-
-## 📝 Exemples de tests
-
-### Test Robot Framework
-
-```robot
-*** Test Cases ***
-La page d'accueil se charge correctement
-    [Documentation]    Vérifie le chargement de la page
-    [Tags]    smoke    critical
-    Accepter les cookies si présents
-    Le titre de la page devrait contenir    Monext
-    L'élément devrait être visible    ${HERO_TITRE}
-    Capturer une preuve visuelle    accueil
-```
-
----
-
-## 🐛 Dépannage
-
-### Problèmes courants
-
-1. **ChromeDriver non trouvé**
-   ```bash
-   brew install chromedriver
-   ```
-
-2. **Allure non installé**
-   ```bash
-   brew install allure
-   ```
-
-3. **Timeout sur les éléments**
-   - Augmenter `IMPLICIT_WAIT` dans settings.py
-
----
-
-## 👥 Contribution
-
-1. Fork le projet
-2. Créer une branche (`git checkout -b feature/AmazingFeature`)
-3. Commit (`git commit -m 'Add AmazingFeature'`)
-4. Push (`git push origin feature/AmazingFeature`)
-5. Ouvrir une Pull Request
-
----
-
-## 📄 Licence
-
-Ce projet est sous licence MIT.
-
----
+Distributed under the MIT License. See `LICENSE` for more information.
 
 <div align="center">
 
-**Développé avec ❤️ pour Monext**
+**Created with ❤️ for High-Quality Automation**
+
+[![Follow me](https://img.shields.io/github/followers/hakantetik44?label=Follow&style=social)](https://github.com/hakantetik44)
 
 </div>
-# Monext_E2E
